@@ -1,37 +1,21 @@
-var fixedbox, movingbox;
-
-
+var fixedRect, movingRect;
 
 function setup() {
-  createCanvas(1000,1200);
-  fixedbox=createSprite(400, 200, 50, 50);
-  movingbox=createSprite(600,300,50,50);
-  fixedbox.shapeColor= "yellow";
-  movingbox.shapeColor="yellow";
-  
-
+  createCanvas(1200,800);
+  fixedRect = createSprite(1100, 200, 50, 80);
+  fixedRect.shapeColor = "green";
+  fixedRect.velocityX= -4;
+  fixedRect.debug = false;
+  movingRect = createSprite(100,200,80,30);
+  movingRect.shapeColor = "green";
+  movingRect.velocityX= 4;
+  movingRect.debug = false;
 }
 
 function draw() {
-  background(0);  
-  movingbox.x=mouseX;
-  movingbox.y=mouseY;
-
-  if(movingbox.x-fixedbox.x < movingbox.width/2+fixedbox.width/2 && 
-    fixedbox.x-movingbox.x < fixedbox.width/2+movingbox.width/2 &&
-    movingbox.y-fixedbox.y < movingbox.height/2+fixedbox.height/2 &&
-    fixedbox.y-movingbox.y < fixedbox.height/2+fixedbox.height/2 ){
-    fixedbox.shapeColor= "red";
-    movingbox.shapeColor="red";
-    
-  }
-  else
-  {  fixedbox.shapeColor= "yellow";
-  movingbox.shapeColor="yellow";
-  }
+  background(0,0,0);  
+bounceoff(movingRect,fixedRect);
+ 
   drawSprites();
-
-
-
-
 }
+
